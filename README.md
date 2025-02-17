@@ -100,12 +100,8 @@ Update the `books` array in `config.json`:
 ```json
 "books": [
   {
-    "url": "https://docs.twgamesdev.com/uhfps/guides/managing-inputs",
-    "title": "ManagingInputs"
-  },
-  {
-    "url": "https://your-second-url.com",
-    "title": "SecondBook"
+      "url": "https://www.w3schools.com/",
+      "title": "w3schools"
   }
 ]
 ```

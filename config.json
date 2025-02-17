@@ -22,12 +22,8 @@
     },
     "books": [
       {
-        "url": "https://docs.twgamesdev.com/uhfps/guides/managing-inputs",
-        "title": "ManagingInputs"
-      },
-      {
         "url": "https://www.w3schools.com/",
-        "title": "OtherGuide"
+        "title": "w3schools"
       }
     ],
     "outputDir": "./output"
