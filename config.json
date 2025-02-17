@@ -1,0 +1,34 @@
+{
+    "siteConfig": {
+      "chapterLinksElmSelector": "nav a",
+      "bodySelector": "main",
+      "bookContentSelector": "main",
+      "headerSelector": "header",
+      "navNextSelector": "nav",
+      "sideBarSelector": "aside"
+    },
+    "browserConfig": {
+      "headless": false,
+      "timeout": 60000
+    },
+    "pdfConfig": {
+      "format": "A4",
+      "margin": {
+        "top": "50px",
+        "bottom": "50px",
+        "left": "50px",
+        "right": "50px"
+      }
+    },
+    "books": [
+      {
+        "url": "https://docs.twgamesdev.com/uhfps/guides/managing-inputs",
+        "title": "ManagingInputs"
+      },
+      {
+        "url": "https://www.w3schools.com/",
+        "title": "OtherGuide"
+      }
+    ],
+    "outputDir": "./output"
+  }

@@ -1,48 +1,48 @@
 # GitBook to PDF Converter
 
-Tool để chuyển đổi nội dung từ các trang GitBook thành file PDF. Hỗ trợ nhiều URLs và tùy chỉnh output.
+A Node.js tool for converting GitBook documentation pages into PDF files. Supports multiple URLs and customizable output settings.
 
-## Yêu cầu hệ thống
+## System Requirements
 
-- Node.js version 14.0.0 trở lên
+- Node.js version 14.0.0 or higher
 - NPM (Node Package Manager)
-- Dung lượng đĩa trống tối thiểu 500MB (cho Playwright và chromium)
-- Kết nối internet ổn định
+- Minimum 500MB free disk space (for Playwright and Chromium)
+- Stable internet connection
 
-## Cài đặt
+## Installation
 
-### 1. Cài đặt Node.js và NPM
+### 1. Install Node.js and NPM
 
-1. Truy cập [Node.js official website](https://nodejs.org)
-2. Tải và cài đặt phiên bản LTS (Long Term Support)
-3. Kiểm tra cài đặt:
+1. Visit [Node.js official website](https://nodejs.org)
+2. Download and install the LTS (Long Term Support) version
+3. Verify installation:
 ```bash
 node --version
 npm --version
 ```
 
-### 2. Tạo project
+### 2. Create Project
 
 ```bash
-# Tạo thư mục project
+# Create project directory
 mkdir gitbook-spider
 cd gitbook-spider
 
-# Khởi tạo project Node.js
+# Initialize Node.js project
 npm init -y
 ```
 
-### 3. Cài đặt dependencies
+### 3. Install Dependencies
 
 ```bash
-# Cài đặt Playwright
+# Install Playwright
 npm install playwright
 
-# Cài đặt Playwright browsers
+# Install Playwright browsers
 npx playwright install chromium
 ```
 
-### 4. Tạo cấu trúc thư mục
+### 4. Create Directory Structure
 
 ```bash
 gitbook-spider/
@@ -52,9 +52,11 @@ gitbook-spider/
 └── output/
 ```
 
-### 5. Copy các file code
+### 5. Configure Project Files
 
-1. Tạo file `config.json`:
+Create and set up the following files:
+
+1. `config.json` - Configuration settings:
 ```json
 {
   "siteConfig": {
@@ -88,13 +90,13 @@ gitbook-spider/
 }
 ```
 
-2. Copy nội dung của `gitbookSpider.js` và `index.js` vào các file tương ứng.
+2. Copy the contents of `gitbookSpider.js` and `index.js` to their respective files.
 
-## Cách sử dụng
+## Usage
 
-### 1. Thêm URLs vào config
+### 1. Add URLs to Configuration
 
-Mở file `config.json` và thêm URLs vào mảng `books`:
+Update the `books` array in `config.json`:
 ```json
 "books": [
   {
@@ -108,19 +110,19 @@ Mở file `config.json` và thêm URLs vào mảng `books`:
 ]
 ```
 
-### 2. Chạy chương trình
+### 2. Run the Program
 
 ```bash
 node index.js
 ```
 
-Files PDF sẽ được tạo trong thư mục `output/`.
+PDF files will be generated in the `output/` directory.
 
-## Tùy chỉnh
+## Customization
 
-### Thay đổi định dạng PDF
+### PDF Format Settings
 
-Trong `config.json`, điều chỉnh `pdfConfig`:
+Modify `pdfConfig` in `config.json`:
 ```json
 "pdfConfig": {
   "format": "A4",  // A4, Letter, Legal...
@@ -133,48 +135,90 @@ Trong `config.json`, điều chỉnh `pdfConfig`:
 }
 ```
 
-### Thay đổi thời gian chờ
+### Browser Settings
 
 ```json
 "browserConfig": {
-  "headless": false,
-  "timeout": 60000  // Đơn vị: milliseconds
+  "headless": false,  // true for no GUI
+  "timeout": 60000    // in milliseconds
 }
 ```
 
-## Xử lý lỗi thường gặp
+## Troubleshooting
 
-1. **Lỗi "page.waitForTimeout"**
-   - Tăng giá trị `timeout` trong `browserConfig`
-   - Kiểm tra kết nối internet
+1. **"page.waitForTimeout" Error**
+   - Increase `timeout` value in `browserConfig`
+   - Check internet connection
 
-2. **Lỗi "Cannot find elements"**
-   - Kiểm tra lại các selectors trong `siteConfig`
-   - Đảm bảo URL có thể truy cập được
+2. **"Cannot find elements" Error**
+   - Verify selectors in `siteConfig`
+   - Ensure URL is accessible
 
-3. **Lỗi "Failed to launch browser"**
-   - Chạy lại lệnh `npx playwright install chromium`
-   - Kiểm tra quyền truy cập thư mục
+3. **"Failed to launch browser" Error**
+   - Run `npx playwright install chromium` again
+   - Check directory permissions
 
-## Đóng góp
+## Contributing
 
-Nếu bạn muốn đóng góp cho project:
-1. Fork repository
-2. Tạo branch mới (`git checkout -b feature/amazing-feature`)
-3. Commit thay đổi (`git commit -m 'Add amazing feature'`)
-4. Push lên branch (`git push origin feature/amazing-feature`)
-5. Tạo Pull Request
+To contribute to this project:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Features
+
+- Multiple GitBook URL support
+- Customizable PDF output settings
+- Progress tracking and error handling
+- Browser automation with Playwright
+- Configurable page selectors
+- Automatic output directory creation
+
+## Limitations
+
+- Works only with public GitBook pages
+- May not work with pages requiring authentication
+- Respects website's robots.txt and terms of service
 
 ## License
 
-Project này được phân phối dưới giấy phép MIT. Xem `LICENSE` để biết thêm thông tin.
+This project is licensed under the MIT License - see the `LICENSE` file for details.
 
-## Liên hệ
+## Support
 
-Nếu bạn có bất kỳ câu hỏi nào, vui lòng tạo issue trong repository hoặc liên hệ trực tiếp.
+If you encounter any issues or have questions:
+1. Check the troubleshooting section
+2. Create an issue in the repository
+3. Contact project maintainers
 
-## Lưu ý
+## FAQ
 
-- Tool này chỉ hoạt động với các trang GitBook public
-- Một số trang có thể yêu cầu đăng nhập sẽ không hoạt động
-- Tôn trọng robots.txt và điều khoản sử dụng của trang web
+**Q: Can I convert password-protected GitBook pages?**
+A: No, the tool currently only supports public pages.
+
+**Q: Why does the conversion take so long?**
+A: The tool waits for each page to load completely to ensure quality. Speed depends on internet connection and page complexity.
+
+**Q: Can I convert multiple books at once?**
+A: Yes, add multiple URLs to the `books` array in `config.json`.
+
+## Security
+
+- The tool runs in a controlled browser environment
+- No data is stored or transmitted externally
+- Local file output only
+
+## Updates and Maintenance
+
+Check regularly for updates:
+```bash
+npm update playwright
+```
+
+## Credits
+
+Built with:
+- [Playwright](https://playwright.dev/)
+- [Node.js](https://nodejs.org/)
