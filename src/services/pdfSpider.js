@@ -9,12 +9,8 @@ class GitBookPDFSpider {
     this._config = config;
   }
 
-  static async create(configPath) {
+  static async create(config) {
     try {
-      // Load config
-      const configFile = await fs.readFile(configPath, 'utf8');
-      const config = JSON.parse(configFile);
-
       // Create output directory if it doesn't exist
       await fs.mkdir(config.outputDir, { recursive: true });
 
@@ -38,15 +34,17 @@ class GitBookPDFSpider {
       const { books } = this._config;
       
       for (const book of books) {
-        console.log(`\nProcessing book: ${book.url}`);
+        console.log(`\nProcessing URL: ${book.url}`);
         try {
           await this._processBook(book);
         } catch (error) {
-          console.error(`Error processing book ${book.url}:`, error);
+          console.error(`Error processing URL ${book.url}:`, error);
+          throw error; // Re-throw to handle in the UI
         }
       }
 
-      console.log('\nAll books processed successfully!');
+      console.log('\nAll URLs processed successfully!');
+      return true;
     } finally {
       if (this._browser) {
         await this._browser.close();
@@ -58,10 +56,9 @@ class GitBookPDFSpider {
     await this._openMainPage(book.url);
     await this._mainPage.waitForTimeout(5000);
 
-    const content = await this._mainPage.content();
-    console.log(`Page content length for ${book.title}:`, content.length);
-
-    const outputPath = path.join(this._config.outputDir, `${book.title}.pdf`);
+    const outputFileName = this._generateFileName(book.url);
+    const outputPath = path.join(this._config.outputDir, outputFileName);
+    
     await this._mainPage.pdf({
       path: outputPath,
       ...this._config.pdfConfig
@@ -88,6 +85,13 @@ class GitBookPDFSpider {
       console.error('Error during page load:', error);
       throw error;
     }
+  }
+
+  _generateFileName(url) {
+    // Extract domain name and clean it up for filename
+    const urlObj = new URL(url);
+    const domain = urlObj.hostname.replace(/[^a-z0-9]/gi, '_');
+    return `${domain}_${Date.now()}.pdf`;
   }
 }
 
