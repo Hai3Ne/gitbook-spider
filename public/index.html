@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web to PDF Converter</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chuyển đổi Web sang PDF</h1>
+        <form id="convertForm">
+            <div class="form-group">
+                <label for="url">URL trang web:</label>
+                <input type="url" id="url" name="url" required 
+                       placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+                <label for="title">Tên file PDF (không bắt buộc):</label>
+                <input type="text" id="title" name="title" 
+                       placeholder="my-document">
+            </div>
+            <div class="form-group">
+                <label>Thư mục lưu PDF:</label>
+                <button type="button" id="folderPicker" class="secondary-button">
+                    Chọn thư mục
+                </button>
+                <div id="selectedFolder" class="folder-display">
+                    Chưa chọn thư mục
+                </div>
+            </div>
+            <button type="submit" id="convertBtn">Chuyển đổi sang PDF</button>
+        </form>
+        <div id="loading" class="loading"></div>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
