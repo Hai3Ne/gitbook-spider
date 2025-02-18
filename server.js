@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const GitBookPDFSpider = require('./services/pdfSpider');
+const GitBookPDFSpider = require('./pdfSpider');
 const fs = require('fs').promises;
 
 const app = express();

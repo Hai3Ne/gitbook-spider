@@ -1,4 +1,4 @@
-const GitBookPDFSpider = require('../pdfSpider');
+const GitBookPDFSpider = require('./pdfSpider');
 const path = require('path');
 
 async function main() {
